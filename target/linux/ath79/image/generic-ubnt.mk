@@ -117,3 +117,21 @@ define Device/ubnt_unifiac-pro
   SUPPORTED_DEVICES += ubnt-unifiac-pro
 endef
 TARGET_DEVICES += ubnt_unifiac-pro
+
+define Device/ubnt_rs
+  DEVICE_TITLE := Ubiquiti RouterStation
+  DEVICE_PACKAGES := kmod-ath5k kmod-usb-ohci kmod-usb2 -swconfig -uboot-envtools
+  ATH_SOC := ar7161
+  UBNT_BOARD := RS
+  UBNT_CHIP := ar7100
+  UBNT_TYPE := RSx
+  IMAGE_SIZE := 16515072
+  IMAGES := sysupgrade.bin factory.bin
+  IMAGE/factory.bin := append-rootfs | pad-rootfs | mkubntimage | check-size $$$$(IMAGE_SIZE)
+  IMAGE/sysupgrade.bin := append-rootfs | pad-rootfs | combined-image | \
+	check-size $$$$(IMAGE_SIZE) | append-metadata
+  KERNEL_SIZE := 2621440
+  KERNEL := kernel-bin | append-dtb | lzma | pad-to $$(KERNEL_SIZE)
+  SUPPORTED_DEVICES := ubnt,rs
+endef
+TARGET_DEVICES += ubnt_rs
