@@ -118,20 +118,24 @@ define Device/ubnt_unifiac-pro
 endef
 TARGET_DEVICES += ubnt_unifiac-pro
 
-define Device/ubnt_rs
-  DEVICE_TITLE := Ubiquiti RouterStation
-  DEVICE_PACKAGES := kmod-ath5k kmod-usb-ohci kmod-usb2 -swconfig -uboot-envtools
+define Device/ubnt_routerstation
+  DEVICE_PACKAGES := kmod-usb-ohci kmod-usb2 -uboot-envtools
   ATH_SOC := ar7161
-  UBNT_BOARD := RS
   UBNT_CHIP := ar7100
   UBNT_TYPE := RSx
-  IMAGE_SIZE := 16515072
+  IMAGE_SIZE := 16128k
   IMAGES := sysupgrade.bin factory.bin
   IMAGE/factory.bin := append-rootfs | pad-rootfs | mkubntimage | check-size $$$$(IMAGE_SIZE)
-  IMAGE/sysupgrade.bin := append-rootfs | pad-rootfs | combined-image | \
-	check-size $$$$(IMAGE_SIZE) | append-metadata
-  KERNEL_SIZE := 2621440
-  KERNEL := kernel-bin | append-dtb | lzma | pad-to $$(KERNEL_SIZE)
+  IMAGE/sysupgrade.bin := append-rootfs | pad-rootfs | combined-image | check-size $$$$(IMAGE_SIZE) | append-metadata
+  KERNEL := kernel-bin | append-dtb | lzma | pad-to $$(BLOCKSIZE)
+  KERNEL_INITRAMFS := kernel-bin | append-dtb | pad-to $$(BLOCKSIZE)
+endef
+
+define Device/ubnt_rs
+  $(Device/ubnt_routerstation)
+  DEVICE_TITLE := Ubiquiti RouterStation
   SUPPORTED_DEVICES := ubnt,rs
+  UBNT_BOARD := RS
+  DEVICE_PACKAGES += -swconfig
 endef
 TARGET_DEVICES += ubnt_rs
