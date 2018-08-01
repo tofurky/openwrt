@@ -119,10 +119,8 @@ endef
 TARGET_DEVICES += ubnt_unifiac-pro
 
 define Device/ubnt_routerstation
-  DEVICE_PACKAGES := kmod-usb-ohci kmod-usb2 -uboot-envtools
+  DEVICE_PACKAGES := kmod-usb-ohci kmod-usb2 fconfig
   ATH_SOC := ar7161
-  UBNT_CHIP := ar7100
-  UBNT_TYPE := RSx
   IMAGE_SIZE := 16128k
   IMAGES := sysupgrade.bin factory.bin
   IMAGE/factory.bin := append-rootfs | pad-rootfs | mkubntimage | check-size $$$$(IMAGE_SIZE)
@@ -136,6 +134,18 @@ define Device/ubnt_rs
   DEVICE_TITLE := Ubiquiti RouterStation
   SUPPORTED_DEVICES := ubnt,rs
   UBNT_BOARD := RS
-  DEVICE_PACKAGES += -swconfig
+  UBNT_TYPE := RS
+  UBNT_CHIP := ar7100
 endef
 TARGET_DEVICES += ubnt_rs
+
+define Device/ubnt_rspro
+  $(Device/ubnt_routerstation)
+  DEVICE_TITLE := Ubiquiti RouterStation Pro
+  SUPPORTED_DEVICES := ubnt,rspro
+  UBNT_BOARD := RSPRO
+  UBNT_TYPE := RSPRO
+  UBNT_CHIP := ar7100pro
+  DEVICE_PACKAGES += swconfig
+endef
+TARGET_DEVICES += ubnt_rspro
