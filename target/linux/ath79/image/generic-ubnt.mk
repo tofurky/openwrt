@@ -132,7 +132,6 @@ endef
 define Device/ubnt_rs
   $(Device/ubnt_routerstation)
   DEVICE_TITLE := Ubiquiti RouterStation
-  SUPPORTED_DEVICES := ubnt,rs
   UBNT_BOARD := RS
   UBNT_TYPE := RS
   UBNT_CHIP := ar7100
@@ -142,7 +141,6 @@ TARGET_DEVICES += ubnt_rs
 define Device/ubnt_rspro
   $(Device/ubnt_routerstation)
   DEVICE_TITLE := Ubiquiti RouterStation Pro
-  SUPPORTED_DEVICES := ubnt,rspro
   UBNT_BOARD := RSPRO
   UBNT_TYPE := RSPRO
   UBNT_CHIP := ar7100pro
