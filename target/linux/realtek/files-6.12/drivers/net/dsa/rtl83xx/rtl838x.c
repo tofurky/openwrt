@@ -111,6 +111,83 @@ static enum template_field_id fixed_templates[N_FIXED_TEMPLATES][N_FIXED_FIELDS]
 	},
 };
 
+const struct rtldsa_mib_list_item rtldsa_838x_mib_list[] = {
+	MIB_LIST_ITEM("dot1dTpPortInDiscards", MIB_ITEM(MIB_REG_STD, 0xec, 1)),
+	MIB_LIST_ITEM("ifOutDiscards", MIB_ITEM(MIB_REG_STD, 0xd0, 1)),
+	MIB_LIST_ITEM("DropEvents", MIB_ITEM(MIB_REG_STD, 0xa8, 1)),
+	MIB_LIST_ITEM("tx_BroadcastPkts", MIB_ITEM(MIB_REG_STD, 0xa4, 1)),
+	MIB_LIST_ITEM("tx_MulticastPkts", MIB_ITEM(MIB_REG_STD, 0xa0, 1)),
+	MIB_LIST_ITEM("tx_UndersizePkts", MIB_ITEM(MIB_REG_STD, 0x98, 1)),
+	MIB_LIST_ITEM("rx_UndersizeDropPkts", MIB_ITEM(MIB_REG_STD, 0x90, 1)),
+	MIB_LIST_ITEM("tx_OversizePkts", MIB_ITEM(MIB_REG_STD, 0x8c, 1)),
+	MIB_LIST_ITEM("Collisions", MIB_ITEM(MIB_REG_STD, 0x7c, 1)),
+	MIB_LIST_ITEM("rx_MacDiscards", MIB_ITEM(MIB_REG_STD, 0x40, 1))
+};
+
+const struct rtldsa_mib_desc rtldsa_838x_mib_desc = {
+	.symbol_errors = MIB_ITEM(MIB_REG_STD, 0xb8, 1),
+
+	.if_in_octets = MIB_ITEM(MIB_REG_STD, 0xf8, 2),
+	.if_out_octets = MIB_ITEM(MIB_REG_STD, 0xf0, 2),
+	.if_in_ucast_pkts = MIB_ITEM(MIB_REG_STD, 0xe8, 1),
+	.if_in_mcast_pkts = MIB_ITEM(MIB_REG_STD, 0xe4, 1),
+	.if_in_bcast_pkts = MIB_ITEM(MIB_REG_STD, 0xe0, 1),
+	.if_out_ucast_pkts = MIB_ITEM(MIB_REG_STD, 0xdc, 1),
+	.if_out_mcast_pkts = MIB_ITEM(MIB_REG_STD, 0xd8, 1),
+	.if_out_bcast_pkts = MIB_ITEM(MIB_REG_STD, 0xd4, 1),
+	.if_out_discards = MIB_ITEM(MIB_REG_STD, 0xd0, 1),
+	.single_collisions = MIB_ITEM(MIB_REG_STD, 0xcc, 1),
+	.multiple_collisions = MIB_ITEM(MIB_REG_STD, 0xc8, 1),
+	.deferred_transmissions = MIB_ITEM(MIB_REG_STD, 0xc4, 1),
+	.late_collisions = MIB_ITEM(MIB_REG_STD, 0xc0, 1),
+	.excessive_collisions = MIB_ITEM(MIB_REG_STD, 0xbc, 1),
+	.crc_align_errors = MIB_ITEM(MIB_REG_STD, 0x9c, 1),
+
+	.unsupported_opcodes = MIB_ITEM(MIB_REG_STD, 0xb4, 1),
+
+	.rx_undersize_pkts = MIB_ITEM(MIB_REG_STD, 0x94, 1),
+	.rx_oversize_pkts = MIB_ITEM(MIB_REG_STD, 0x88, 1),
+	.rx_fragments = MIB_ITEM(MIB_REG_STD, 0x84, 1),
+	.rx_jabbers = MIB_ITEM(MIB_REG_STD, 0x80, 1),
+
+	.tx_pkts = {
+		MIB_ITEM(MIB_REG_STD, 0x78, 1),
+		MIB_ITEM(MIB_REG_STD, 0x70, 1),
+		MIB_ITEM(MIB_REG_STD, 0x68, 1),
+		MIB_ITEM(MIB_REG_STD, 0x60, 1),
+		MIB_ITEM(MIB_REG_STD, 0x58, 1),
+		MIB_ITEM(MIB_REG_STD, 0x50, 1),
+		MIB_ITEM(MIB_REG_STD, 0x48, 1)
+	},
+	.rx_pkts = {
+		MIB_ITEM(MIB_REG_STD, 0x74, 1),
+		MIB_ITEM(MIB_REG_STD, 0x6c, 1),
+		MIB_ITEM(MIB_REG_STD, 0x64, 1),
+		MIB_ITEM(MIB_REG_STD, 0x5c, 1),
+		MIB_ITEM(MIB_REG_STD, 0x54, 1),
+		MIB_ITEM(MIB_REG_STD, 0x4c, 1),
+		MIB_ITEM(MIB_REG_STD, 0x44, 1)
+	},
+	.rmon_ranges = {
+		{ 0, 64 },
+		{ 65, 127 },
+		{ 128, 255 },
+		{ 256, 511 },
+		{ 512, 1023 },
+		{ 1024, 1518 },
+		{ 1519, 10000 }
+	},
+
+	.drop_events = MIB_ITEM(MIB_REG_STD, 0xa8, 1),
+	.collisions = MIB_ITEM(MIB_REG_STD, 0x7c, 1),
+
+	.rx_pause_frames = MIB_ITEM(MIB_REG_STD, 0xb0, 1),
+	.tx_pause_frames = MIB_ITEM(MIB_REG_STD, 0xac, 1),
+
+	.list_count = ARRAY_SIZE(rtldsa_838x_mib_list),
+	.list = rtldsa_838x_mib_list
+};
+
 void rtldsa_838x_print_matrix(void)
 {
 	unsigned volatile int *ptr8;
@@ -1671,12 +1748,14 @@ static void rtl838x_set_egr_filter(int port, enum egr_filter state)
 		    RTL838X_VLAN_PORT_EGR_FLTR + (((port / 29) << 2)));
 }
 
-static void rtl838x_set_distribution_algorithm(int group, int algoidx, u32 algomsk)
+static int rtldsa_838x_set_distribution_algorithm(struct rtl838x_switch_priv *priv,
+						  int group, int algoidx, u32 algomsk)
 {
 	algoidx &= 1; /* RTL838X only supports 2 concurrent algorithms */
 	sw_w32_mask(1 << (group % 8), algoidx << (group % 8),
 		    RTL838X_TRK_HASH_IDX_CTRL + ((group >> 3) << 2));
 	sw_w32(algomsk, RTL838X_TRK_HASH_CTRL + (algoidx << 2));
+	return 0;
 }
 
 static void rtl838x_set_receive_management_action(int port, rma_ctrl_t type, action_type_t action)
@@ -1713,6 +1792,20 @@ rtldsa_838x_vlan_profile_dump(struct rtl838x_switch_priv *priv, int idx)
 		p.unkn_mc_fld.pmsks_idx.ip, p.unkn_mc_fld.pmsks_idx.ip6);
 }
 
+static int rtldsa_838x_lag_set_port_members(struct rtl838x_switch_priv *priv, int group,
+					    u64 members, struct netdev_lag_upper_info *info)
+{
+	priv->lags_port_members[group] = members;
+
+	priv->r->set_port_reg_be(priv->lags_port_members[group],
+				 priv->r->trk_mbr_ctr(group));
+
+	return 0;
+}
+
+int rtldsa_83xx_lag_setup_algomask(struct rtl838x_switch_priv *priv, int group,
+				   struct netdev_lag_upper_info *info);
+
 const struct rtldsa_config rtldsa_838x_cfg = {
 	.mask_port_reg_be = rtl838x_mask_port_reg,
 	.set_port_reg_be = rtl838x_set_port_reg,
@@ -1723,6 +1816,7 @@ const struct rtldsa_config rtldsa_838x_cfg = {
 	.stat_port_rst = RTL838X_STAT_PORT_RST,
 	.stat_rst = RTL838X_STAT_RST,
 	.stat_port_std_mib = RTL838X_STAT_PORT_STD_MIB,
+	.mib_desc = &rtldsa_838x_mib_desc,
 	.stat_counters_lock = rtldsa_counters_lock_register,
 	.stat_counters_unlock = rtldsa_counters_unlock_register,
 	.stat_update_counters_atomically = rtldsa_update_counters_atomically,
@@ -1797,9 +1891,11 @@ const struct rtldsa_config rtldsa_838x_cfg = {
 	.route_read = rtl838x_route_read,
 	.route_write = rtl838x_route_write,
 	.l3_setup = rtl838x_l3_setup,
-	.set_distribution_algorithm = rtl838x_set_distribution_algorithm,
 	.set_receive_management_action = rtl838x_set_receive_management_action,
 	.qos_init = rtldsa_838x_qos_init,
+	.lag_set_distribution_algorithm = rtldsa_838x_set_distribution_algorithm,
+	.lag_set_port_members = rtldsa_838x_lag_set_port_members,
+	.lag_setup_algomask = rtldsa_83xx_lag_setup_algomask,
 };
 
 irqreturn_t rtl838x_switch_irq(int irq, void *dev_id)
